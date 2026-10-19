@@ -38,11 +38,6 @@ Every assignment is one pre-named skeleton notebook in `work/notebooks/`. Click 
 fill the sections in order, then **File → Save a copy in GitHub → OK** — the dialog is
 already pre-filled with your repo and the right path.
 
-> **The badges know whose repo they're in.** About 30 seconds after you create your copy, an
-> automatic commit ("Point Colab badges at this copy") rewires every badge in it to open
-> **your** notebooks — with your saved work — instead of the shared read-only ones. Reading
-> this on the shared starter page? The badges below open blank previews; make your copy
-> first ([SETUP.md](SETUP.md), Moment 1).
 
 | Week | Card | Notebook | Open |
 |---|---|---|---|
