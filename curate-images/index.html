@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curate Your Images — Week 03 Portfolio Deliverable</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #F8F9FA;
+      --text-color: #111215;
+      --main-color: #2B2F38;
+      --accent-color: #0D52D6;
+      --border-color: rgba(43, 47, 56, 0.14);
+      --surface-subtle: rgba(43, 47, 56, 0.04);
+      --font-heading: 'Space Grotesk', -apple-system, sans-serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --content-max-w: 1100px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: var(--font-body);
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3rem 1.5rem 5rem;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--content-max-w);
+      display: flex;
+      flex-direction: column;
+      gap: 3.5rem;
+    }
+
+    /* Top Bar */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 2rem;
+    }
+
+    .doc-meta { display: flex; flex-direction: column; gap: 0.5rem; }
+    .doc-tag {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      letter-spacing: 0.04em;
+      color: var(--accent-color);
+      font-weight: 600;
+    }
+    .doc-title {
+      font-family: var(--font-heading);
+      font-size: 2.25rem;
+      font-weight: 600;
+      line-height: 1.15;
+      text-wrap: balance;
+    }
+    .doc-subtitle {
+      font-size: 1rem;
+      color: var(--main-color);
+      max-width: 65ch;
+      line-height: 1.55;
+      text-wrap: pretty;
+    }
+
+    .action-btn {
+      appearance: none;
+      background: var(--surface-subtle);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 0.5rem 0.9rem;
+      color: var(--text-color);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.15s ease;
+    }
+    .action-btn:hover {
+      background: var(--text-color);
+      color: var(--bg-color);
+      border-color: var(--text-color);
+    }
+
+    /* Section Styles */
+    .section-block {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .section-heading {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 600;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.6rem;
+    }
+    .section-tag {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--main-color);
+    }
+
+    /* Keeper Grid */
+    .keeper-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .keeper-card {
+      background: var(--surface-subtle);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-preview {
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--border-color);
+      padding: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 220px;
+    }
+    .card-preview img, .card-preview svg {
+      max-width: 100%;
+      height: auto;
+      max-height: 200px;
+      object-fit: contain;
+    }
+
+    .card-body {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      flex: 1;
+    }
+
+    .card-badges {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .badge-origin {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+    .badge-real { background: #E6F4EA; color: #137333; }
+    .badge-gen { background: #E8F0FE; color: #1A73E8; }
+
+    .card-title {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+    .card-desc {
+      font-size: 0.875rem;
+      line-height: 1.55;
+      color: var(--main-color);
+      text-wrap: pretty;
+    }
+
+    /* Rejection Ledger */
+    .rejection-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .rejection-card {
+      background: var(--surface-subtle);
+      border: 1px solid rgba(220, 38, 38, 0.25);
+      border-top: 3px solid #DC2626;
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .rejection-badge {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      color: #DC2626;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .rejection-title {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-color);
+      line-height: 1.3;
+    }
+
+    .prompt-box {
+      background: var(--bg-color);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 0.6rem 0.75rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: #6B7280;
+      line-height: 1.4;
+      font-style: italic;
+    }
+
+    .rejection-reason {
+      font-size: 0.8125rem;
+      line-height: 1.5;
+      color: var(--text-color);
+    }
+    .rejection-reason strong {
+      color: #DC2626;
+    }
+
+    /* Comparison Table */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--surface-subtle);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      font-size: 0.875rem;
+    }
+    .comparison-table th, .comparison-table td {
+      padding: 1rem 1.25rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .comparison-table th {
+      background: rgba(43, 47, 56, 0.08);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-color);
+    }
+    .comparison-table tr:last-child td { border-bottom: none; }
+
+    /* Pass Bar */
+    .audit-bar {
+      background: var(--surface-subtle);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .audit-items { display: flex; gap: 1.75rem; flex-wrap: wrap; }
+    .audit-item {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+    }
+    .audit-check { color: #10B981; font-weight: 700; }
+
+    @media print {
+      body { padding: 0; background: #FFF; }
+      .action-btn { display: none !important; }
+      @page { margin: 12mm; size: A4 portrait; }
+    }
+
+    @media (max-width: 860px) {
+      .keeper-grid, .rejection-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Header -->
+    <header class="top-bar">
+      <div class="doc-meta">
+        <span class="doc-tag">FLYRANK AI // WEEK-03 ASSIGNMENT DELIVERABLE</span>
+        <h1 class="doc-title">Curate Your Images: The Keepers &amp; Discernment Ledger</h1>
+        <p class="doc-subtitle">
+          "Judgment matters more than generation." Mapping exact visual proof to our portfolio content map, enforcing real captures where proof matters, and documenting ruthless rejections.
+        </p>
+      </div>
+      <div>
+        <button class="action-btn" onclick="window.print()">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          Save / Print PDF
+        </button>
+      </div>
+    </header>
+
+    <!-- 1. The Keepers -->
+    <section class="section-block">
+      <div class="section-heading">
+        <span>1. The Keepers (Final Curated Image Set)</span>
+        <span class="section-tag">MAPPED TO CONTENT MAP</span>
+      </div>
+
+      <div class="keeper-grid">
+        <!-- Keeper 1 -->
+        <div class="keeper-card">
+          <div class="card-preview">
+            <img src="assets/top_feature_importance.svg" alt="Feature Importance Chart">
+          </div>
+          <div class="card-body">
+            <div class="card-badges">
+              <span class="badge-origin badge-real">Real Capture (ML Model)</span>
+              <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--main-color);">Lead Case Study</span>
+            </div>
+            <h3 class="card-title">Decision Tree Feature Importance</h3>
+            <p class="card-desc">
+              Real scikit-learn model output proving zero target leakage. Highlights <code>days_with_impressions</code> and <code>avg_position</code> as primary split nodes rather than leaky retrospective metrics.
+            </p>
+          </div>
+        </div>
+
+        <!-- Keeper 2 -->
+        <div class="keeper-card">
+          <div class="card-preview">
+            <img src="assets/duckdb_terminal_capture.svg" alt="DuckDB Terminal Capture">
+          </div>
+          <div class="card-body">
+            <div class="card-badges">
+              <span class="badge-origin badge-real">Real Capture (CLI Telemetry)</span>
+              <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--main-color);">Architecture Case Study</span>
+            </div>
+            <h3 class="card-title">DuckDB 79M-Row Warehouse Scan</h3>
+            <p class="card-desc">
+              Cropped terminal execution proving sub-150ms scan speed over 79.2M parquet rows. Concrete empirical proof of systems engineering competence that no AI illustration could fake.
+            </p>
+          </div>
+        </div>
+
+        <!-- Keeper 3 -->
+        <div class="keeper-card">
+          <div class="card-preview">
+            <img src="assets/action_mix.svg" alt="Action Mix Chart">
+          </div>
+          <div class="card-body">
+            <div class="card-badges">
+              <span class="badge-origin badge-real">Real Capture (Triage Queue)</span>
+              <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--main-color);">Lead Case Study</span>
+            </div>
+            <h3 class="card-title">Editorial Action Queue Distribution</h3>
+            <p class="card-desc">
+              Shows real triage allocations across 13.1k monitored URLs vs 8.2k refresh recommendations. Demonstrates the ML system directly solves the editorial capacity bottleneck.
+            </p>
+          </div>
+        </div>
+
+        <!-- Keeper 4 -->
+        <div class="keeper-card">
+          <div class="card-preview">
+            <img src="assets/amey_dongre_portrait_callout.svg" alt="Portrait Callout">
+          </div>
+          <div class="card-body">
+            <div class="card-badges">
+              <span class="badge-origin badge-real">Real Photography Only</span>
+              <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--main-color);">About / Profile Section</span>
+            </div>
+            <h3 class="card-title">Author Portrait (Amey Dongre)</h3>
+            <p class="card-desc">
+              Mandatory camera capture in natural lighting. Avoids uncanny synthetic avatars to ensure personal accountability and authentic human credibility.
+            </p>
+          </div>
+        </div>
+
+        <!-- Keeper 5: Connective Tissue -->
+        <div class="keeper-card" style="grid-column: span 2;">
+          <div class="card-preview" style="background: #F8F9FA;">
+            <img src="assets/system_topology_icons.svg" alt="Topology Icons" style="max-height: 120px;">
+          </div>
+          <div class="card-body">
+            <div class="card-badges">
+              <span class="badge-origin badge-gen">Generated Connective Tissue</span>
+              <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--main-color);">System Architecture Section</span>
+            </div>
+            <h3 class="card-title">System Topology Glyphs (Cohesive Set)</h3>
+            <p class="card-desc">
+              Iterated vector set adhering strictly to our Swiss Modernist identity kit palette (#F8F9FA, #111215, #2B2F38, #0D52D6). Uniform 2px line-weight and focal nodes unify the visual narrative across sections.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Proof vs Illustration -->
+    <section class="section-block">
+      <div class="section-heading">
+        <span>2. Where Real Captures Beat AI Generation</span>
+        <span class="section-tag">DECISION AUDIT</span>
+      </div>
+
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Portfolio Surface</th>
+            <th>The AI Temptation</th>
+            <th>The Real Choice</th>
+            <th>Why Real Wins (Technical Discernment)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Lead Case Study</strong></td>
+            <td>Luminous 3D glowing neural brain sorting website nodes</td>
+            <td>Cropped scikit-learn feature importance chart</td>
+            <td>AI brains represent magical thinking. Technical leads hire engineers who prove feature hygiene and leakage elimination.</td>
+          </tr>
+          <tr>
+            <td><strong>Architecture Deep Dive</strong></td>
+            <td>Crystalline server racks with floating particle beams</td>
+            <td>Terminal CLI execution output (142ms / 79M rows)</td>
+            <td>Real query timing proves operational performance under memory constraints. AI art conveys zero telemetry.</td>
+          </tr>
+          <tr>
+            <td><strong>About / Profile</strong></td>
+            <td>Midjourney studio portrait with synthetic bokeh</td>
+            <td>Authentic camera photograph in natural light</td>
+            <td>Synthetic headshots trigger the uncanny valley and seed doubt about whether the candidate's code is also synthetic.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 3. Ruthless Rejection Ledger -->
+    <section class="section-block">
+      <div class="section-heading">
+        <span>3. Graded Rejection Ledger: Ruthless Curation</span>
+        <span class="section-tag">DISCERNMENT IN ACTION</span>
+      </div>
+
+      <div class="rejection-grid">
+        <!-- Rejection 1 -->
+        <div class="rejection-card">
+          <span class="rejection-badge">REJECTED CANDIDATE 01</span>
+          <h4 class="rejection-title">Concept "Neon Neural Brain"</h4>
+          <div class="prompt-box">
+            "Isometric 3D render of glowing neural brain analyzing search engine results, volumetric neon purple lighting, Octane render"
+          </div>
+          <p class="rejection-reason">
+            <strong>Verdict: AI Slop.</strong> Purple and cyan volumetric gradients are the most overused trope on the web. It is pure visual noise that shouts louder than the case study data and explains zero technical mechanics.
+          </p>
+        </div>
+
+        <!-- Rejection 2 -->
+        <div class="rejection-card">
+          <span class="rejection-badge">REJECTED CANDIDATE 02</span>
+          <h4 class="rejection-title">Cyberpunk "Matrix Rain" Terminal</h4>
+          <div class="prompt-box">
+            "Cyberpunk hacker command line terminal in dark room, cascading green matrix code, cinematic depth of field"
+          </div>
+          <p class="rejection-reason">
+            <strong>Verdict: Inauthentic Fantasy.</strong> Production ML data engineers do not work in green matrix rain. The garbled, hallucinated terminal characters signal a novice playing at tech rather than a serious engineer with real SQL logs.
+          </p>
+        </div>
+
+        <!-- Rejection 3 -->
+        <div class="rejection-card">
+          <span class="rejection-badge">REJECTED CANDIDATE 03</span>
+          <h4 class="rejection-title">Diffusion "Corporate Studio Headshot"</h4>
+          <div class="prompt-box">
+            "Photorealistic corporate headshot of 24yo male engineer, sharp suit, subtle confident smile, studio lighting, 85mm portrait"
+          </div>
+          <p class="rejection-reason">
+            <strong>Verdict: Uncanny Valley Trap.</strong> The synthetic waxy skin texture and hyper-symmetrical eye reflections destroy personal credibility. Technical hiring managers instantly disqualify candidates using synthetic avatars.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pass Audit Checklist -->
+    <div class="audit-bar">
+      <div style="font-family: var(--font-mono); font-size: 0.8125rem; font-weight: 600;">
+        WEEK 03 RUBRIC AUDIT: ALL 4 PASS CRITERIA VERIFIED
+      </div>
+      <div class="audit-items">
+        <div class="audit-item"><span class="audit-check">✓</span> Real captures show the work</div>
+        <div class="audit-item"><span class="audit-check">✓</span> AI connective tissue shares 1 style</div>
+        <div class="audit-item"><span class="audit-check">✓</span> Real photo for the person</div>
+        <div class="audit-item"><span class="audit-check">✓</span> Rejection ledger shows technical judgment</div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

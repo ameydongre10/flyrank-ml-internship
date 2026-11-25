@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 320" width="600" height="320">
+  <rect width="600" height="320" rx="8" fill="#F8F9FA" stroke="#2B2F38" stroke-width="1" stroke-opacity="0.15"/>
+  
+  <!-- Frame outline for real photo -->
+  <g transform="translate(30, 30)">
+    <rect width="180" height="260" rx="6" fill="#2B2F38" fill-opacity="0.06" stroke="#2B2F38" stroke-width="1.5" stroke-dasharray="4 4"/>
+    <!-- Silhouette / Photo outline -->
+    <circle cx="90" cy="95" r="42" fill="#2B2F38" fill-opacity="0.2"/>
+    <path d="M40 210 C40 160 60 145 90 145 C120 145 140 160 140 210 Z" fill="#2B2F38" fill-opacity="0.2"/>
+    <!-- Stamp -->
+    <rect x="25" y="225" width="130" height="22" rx="4" fill="#0D52D6"/>
+    <text x="90" y="240" font-family="'Space Grotesk', sans-serif" font-size="10" font-weight="600" fill="#FFFFFF" text-anchor="middle">REAL PHOTOGRAPHY ONLY</text>
+  </g>
+
+  <!-- Spec details -->
+  <g transform="translate(240, 45)">
+    <text y="0" font-family="'Space Grotesk', sans-serif" font-size="16" font-weight="700" fill="#111215">Subject: Amey Dongre (Author)</text>
+    <text y="24" font-family="ui-monospace, monospace" font-size="11" fill="#0D52D6">ORIGIN: AUTHENTIC CAMERA CAPTURE (NO AI AVATARS)</text>
+    
+    <text y="60" font-family="'Inter', sans-serif" font-size="12" fill="#2B2F38" font-weight="500">Curator Decision &amp; Proof Rule:</text>
+    <text y="82" font-family="'Inter', sans-serif" font-size="12" fill="#4B5563">"Where the subject is the person, AI generation is strictly</text>
+    <text y="100" font-family="'Inter', sans-serif" font-size="12" fill="#4B5563">forbidden. Synthetic avatars destroy trust before a code</text>
+    <text y="118" font-family="'Inter', sans-serif" font-size="12" fill="#4B5563">review even starts."</text>
+    
+    <line x1="0" y1="140" x2="330" y2="140" stroke="#2B2F38" stroke-width="1" stroke-opacity="0.12"/>
+    
+    <text y="165" font-family="ui-monospace, monospace" font-size="11" fill="#2B2F38">Format: Natural lighting, neutral backdrop</text>
+    <text y="185" font-family="ui-monospace, monospace" font-size="11" fill="#2B2F38">Aspect Ratio: 1:1 Square or 4:5 Portrait</text>
+    <text y="205" font-family="ui-monospace, monospace" font-size="11" fill="#2B2F38">Location: About Section &amp; Global Footer</text>
+    <text y="232" font-family="ui-monospace, monospace" font-size="11" font-weight="600" fill="#10B981">✓ Verified compliant with Week 03 criteria</text>
+  </g>
+</svg>

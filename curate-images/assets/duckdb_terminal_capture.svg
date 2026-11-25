@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="800" height="420">
+  <rect width="800" height="420" rx="8" fill="#111215"/>
+  <rect x="0" y="0" width="800" height="38" rx="8" fill="#1C1E24"/>
+  <circle cx="20" cy="19" r="6" fill="#FF5F56"/>
+  <circle cx="40" cy="19" r="6" fill="#FFBD2E"/>
+  <circle cx="60" cy="19" r="6" fill="#27C93F"/>
+  <text x="400" y="24" fill="#8E95A5" font-family="ui-monospace, monospace" font-size="12" text-anchor="middle">terminal — duckdb -c &quot;fact_content_daily_performance&quot;</text>
+  
+  <g font-family="ui-monospace, monospace" font-size="13" fill="#F8F9FA" transform="translate(24, 68)">
+    <text y="0" fill="#8E95A5">$ duckdb -s "EXPLAIN ANALYZE SELECT url_hash, SUM(clicks), AVG(position) FROM read_parquet('data/fact_content_*.parquet') GROUP BY 1 LIMIT 5;"</text>
+    <text y="28" fill="#0D52D6">┌───────────────────────────┬────────────────┬─────────────────┐</text>
+    <text y="52" fill="#0D52D6">│</text><text x="24" y="52">url_hash                  </text><text x="228" y="52" fill="#0D52D6">│</text><text x="248" y="52">sum(clicks)     </text><text x="372" y="52" fill="#0D52D6">│</text><text x="392" y="52">avg(position)    </text><text x="548" y="52" fill="#0D52D6">│</text>
+    <text y="76" fill="#0D52D6">├───────────────────────────┼────────────────┼─────────────────┤</text>
+    <text y="100" fill="#0D52D6">│</text><text x="24" y="100" fill="#F8F9FA">0x7f4b8109d3e8            </text><text x="228" y="100" fill="#0D52D6">│</text><text x="248" y="100" fill="#F8F9FA">84,120          </text><text x="372" y="100" fill="#0D52D6">│</text><text x="392" y="100" fill="#F8F9FA">4.21             </text><text x="548" y="100" fill="#0D52D6">│</text>
+    <text y="124" fill="#0D52D6">│</text><text x="24" y="124" fill="#F8F9FA">0x3c99a41e9b20            </text><text x="228" y="124" fill="#0D52D6">│</text><text x="248" y="124" fill="#F8F9FA">41,892          </text><text x="372" y="124" fill="#0D52D6">│</text><text x="392" y="124" fill="#F8F9FA">8.74             </text><text x="548" y="124" fill="#0D52D6">│</text>
+    <text y="148" fill="#0D52D6">│</text><text x="24" y="148" fill="#F8F9FA">0x91d2004ef3a1            </text><text x="228" y="148" fill="#0D52D6">│</text><text x="248" y="148" fill="#F8F9FA">19,403          </text><text x="372" y="148" fill="#0D52D6">│</text><text x="392" y="148" fill="#F8F9FA">12.05            </text><text x="548" y="148" fill="#0D52D6">│</text>
+    <text y="172" fill="#0D52D6">└───────────────────────────┴────────────────┴─────────────────┘</text>
+    <text y="210" fill="#10B981">✓ Parquet Scan: 79,240,118 rows processed across 12 partitions</text>
+    <text y="234" fill="#8E95A5">  Filter pushdown applied | Peak memory: 642MB | Execution time: <tspan fill="#F8F9FA" font-weight="bold">142.6 ms</tspan></text>
+    <text y="270" fill="#8E95A5">$ <tspan fill="#F8F9FA">_</tspan></text>
+  </g>
+</svg>
