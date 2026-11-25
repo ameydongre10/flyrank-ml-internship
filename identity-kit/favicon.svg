@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="14" fill="#111215"/>
+  <!-- Precision Architectural Monogram 'A' and 'D' -->
+  <path d="M18 46 L26 18 L34 46 M20.5 37 L31.5 37" stroke="#F8F9FA" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M36 18 L43 18 C48.5 18 52 22 52 32 C52 42 48.5 46 43 46 L36 46 Z" stroke="#F8F9FA" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- Focus Accent Point -->
+  <circle cx="43" cy="32" r="3" fill="#0D52D6"/>
+</svg>
